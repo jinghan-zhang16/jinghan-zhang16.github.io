@@ -1,0 +1,27 @@
+---
+title: "Dashboard"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+    source: embed
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(tidyverse)
+library(p8105.datasets)
+library(plotly)
+```
+
+```{r}
+data("rest_inspec")
+
+rest_inspec_clean = rest_inspec %>%
+  janitor::clean_names() %>% 
+  mutate(cuisine_description = gsub("[[:punct:]].*","",cuisine_description)) %>%
+  mutate(cuisine_description = recode(cuisine_description,
+    "CafÃ" = "Cafe"
+  ))
+```
+
