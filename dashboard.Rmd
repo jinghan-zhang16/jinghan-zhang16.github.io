@@ -58,3 +58,38 @@ plot_ly(rest_inspec_clean %>% filter(boro!="Missing"),
         xaxis = list(title = 'Borough'),
         yaxis = list(title = 'Report Scores'))
 ```
+
+
+Column {data-width=350}
+-----------------------------------------------------------------------
+
+### Bar chart
+
+```{r}
+plot_ly(freq_cuisine_20,
+        x = ~reorder(cuisine_description,-n), y = ~n, color = ~cuisine_description,
+        type = "bar", 
+        colors = "viridis",
+        text = ~cuisine_description) %>%
+  layout(title = 'Restaurants by Cuisine',
+        xaxis = list(title = 'Cuisine Type'),
+        yaxis = list(title = 'Restaurants'))
+```
+
+### Scatter plot
+
+```{r}
+fv <- rest_crit_not_crit_20 %>% 
+  select(critical, not_critical) %>%
+  lm(critical ~ not_critical,.) %>% fitted.values()
+
+plot_ly(rest_crit_not_crit_20,
+        x = ~not_critical, y = ~critical, color = ~cuisine_description,
+        alpha = 0.7, type = "scatter", 
+        mode = "markers", colors = "viridis",
+        text = ~cuisine_description) %>%
+  layout(title = 'CHANGE THE TITLE',
+        xaxis = list(title = 'n non-critical violations'),
+        yaxis = list(title = 'n critical violations')) %>%
+  add_trace(x = ~not_critical, y = fv, mode = "lines")
+```
