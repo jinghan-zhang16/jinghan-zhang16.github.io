@@ -23,5 +23,24 @@ rest_inspec_clean = rest_inspec %>%
   mutate(cuisine_description = recode(cuisine_description,
     "CafÃ" = "Cafe"
   ))
+
+# 20 most frequent restaurant categories
+freq_cuisine_20 = count(rest_inspec_clean, cuisine_description) %>%
+  arrange(desc(n)) %>%
+  slice(1:20)
+
+# restaurant rating distribution for the most frequent categories
+rest_ratings_20 = rest_inspec_clean %>%
+  filter(!is.na(score)) %>%
+  filter(cuisine_description %in% freq_cuisine_20$cuisine_description)
+
+# restaurant critical versus non critical for the most frequent categories
+rest_crit_not_crit_20 = rest_inspec_clean %>%
+  select(cuisine_description, critical_flag) %>%
+  filter(cuisine_description %in% freq_cuisine_20$cuisine_description) %>%
+  group_by(cuisine_description) %>%
+  summarise(
+    critical = sum(critical_flag == "Critical"),
+    not_critical = sum(critical_flag == "Not Critical"))
 ```
 
