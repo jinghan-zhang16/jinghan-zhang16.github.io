@@ -44,3 +44,55 @@ rest_crit_not_crit_20 = rest_inspec_clean %>%
     not_critical = sum(critical_flag == "Not Critical"))
 ```
 
+Column {data-width=650}
+-----------------------------------------------------------------------
+
+### Violin plot
+
+```{r}
+plot_ly(rest_ratings_20,
+        y = ~boro, color = ~cuisine_description,
+        type = "violin", 
+        colors = "viridis") %>%
+  layout(title = 'Report Scores by Borough',
+        xaxis = list(title = 'Borough'),
+        yaxis = list(title = 'Report Scores'))
+```
+
+
+Column {data-width=350}
+-----------------------------------------------------------------------
+
+### Bar chart
+
+```{r}
+plot_ly(freq_cuisine_20,
+        x = ~reorder(cuisine_description,-n), y = ~n, color = ~cuisine_description,
+        type = "bar", 
+        colors = "viridis",
+        text = ~cuisine_description) %>%
+  layout(title = 'Restaurant Counts of Different Cuisines',
+        xaxis = list(title = 'Cuisine'),
+        yaxis = list(title = 'Count'))
+```
+
+### Scatter plot
+
+```{r}
+
+fv <- rest_crit_not_crit_20 %>% 
+  select(critical, not_critical) %>%
+  lm(critical ~ not_critical,.) %>% fitted.values()
+
+plot_ly(rest_crit_not_crit_20,
+        x = ~not_critical, y = ~critical, color = ~cuisine_description,
+        alpha = 0.7, type = "scatter", 
+        mode = "markers", colors = "viridis",
+        text = ~cuisine_description) %>%
+  layout(title = 'Critical vs. Non-critical Violations by Cuisine',
+        xaxis = list(title = 'Non-critical Violations'),
+        yaxis = list(title = 'Critical Violations')) %>%
+  add_trace(x = ~not_critical, y = fv, mode = "lines")
+```
+
+
