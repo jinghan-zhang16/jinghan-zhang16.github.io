@@ -3,3 +3,5 @@ title: "Jinghan Zhang's CV"
 output:
   html_document
 ---
+
+<embed src="images/Jinghan_CV2020.pdf" width="800px" height="2100px">

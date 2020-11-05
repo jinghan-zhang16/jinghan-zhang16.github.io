@@ -1,8 +1,23 @@
 ---
-title: "Jinghan Zhang's Personal Website"
+title: "Jinghan Zhang"
 output: 
   html_document:
     code_folding: hide
     toc: true
     toc_float: true
 ---
+Intern at The John A. Hartford Foundation  
+MPH in Health Policy and Management, Certificate in Applied Biostatistics  
+Columbia University Mailman School of Public Health
+
+<img src="images/ProfilePicture.jpg" style="width:50%">
+
+# Introduction
+I am a second year MPH student in the Department of Health Policy and Management at Columbia University Mailman School of Public Health. I recently graduated from Cornell University with a degree in Biomedical Engineering and minor in English. I am interested in pursuing medicine in the future, working at the intersection of scientific innovation and service. I am passionate about utilizing public health perspectives in order to holistically approach health care and delivery. 
+
+
+# Fun Facts
+
+*   My family moved around often when I was younger, resulting in me changing schools 8 times and learning 5 languages.
+*   At my fastest, I could read a 300 page book in 2 hours.
+*   I used to build planes as part of a project team in undergraduate.
