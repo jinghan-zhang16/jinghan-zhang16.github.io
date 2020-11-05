@@ -50,8 +50,8 @@ Column {data-width=650}
 ### Violin plot
 
 ```{r}
-plot_ly(rest_ratings_20,
-        y = ~boro, color = ~cuisine_description,
+plot_ly(rest_inspec_clean %>% filter(boro!="Missing"),
+        y = ~score, color = ~boro,
         type = "violin", 
         colors = "viridis") %>%
   layout(title = 'Report Scores by Borough',
